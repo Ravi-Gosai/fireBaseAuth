@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import classes from "./AuthForm.module.css";
+import AuthContext from "../store/auth-context";
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const inputEmailRef = useRef();
   const inputPasswordRef = useRef();
+
+  const authCtx = useContext(AuthContext)
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -50,11 +53,15 @@ const AuthForm = () => {
           }
           // alert(errorMessage);
           // console.log(data);
+          if(isLogin) {
+            errorMessage = 'Authentication failed alert like the way you did in signup'
+          }
           throw new Error(errorMessage)
         });
       }
     }).then((data)=>{
       console.log(data)
+      authCtx.login(data.idToken)
     }).catch(err=>{
       alert(err.message)
     })
