@@ -13,6 +13,10 @@ export const AuthContextProvider = (props)=>{
 
     const intialTokenState = localStorage.getItem('token')
 
+    setTimeout(()=>{
+        localStorage.removeItem('token')
+    },60*5000)
+
 
     const [token,setToken] = useState(intialTokenState)
 
