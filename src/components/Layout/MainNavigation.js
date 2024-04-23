@@ -13,6 +13,7 @@ const MainNavigation = () => {
   const logoutHandler = ()=>{
     authCtx.logout()
     history.replace('/auth')
+    
 
   }
   return (

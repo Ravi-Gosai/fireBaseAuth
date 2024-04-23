@@ -12,6 +12,7 @@ const AuthForm = () => {
 
   const authCtx = useContext(AuthContext)
   const history = useHistory()
+  console.log(authCtx)
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -65,6 +66,7 @@ const AuthForm = () => {
       console.log(data)
       authCtx.login(data.idToken)
       history.replace('/')
+    
     }).catch(err=>{
       alert(err.message)
     })
